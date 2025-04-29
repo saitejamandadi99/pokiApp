@@ -1,34 +1,44 @@
-import { useState, useEffect } from 'react'    
+import { useState, useEffect } from 'react'   
+import PokemonItem from '../PokemonItem' 
 import './index.css'
 const apiStatus = {
     initial: 'INITIAL',
-    inProgess: 'IN_PROGRESS',
+    inProgress: 'IN_PROGRESS',
     success: 'SUCCESS',
     failure: 'Failure'
 }
 const Pokemon = () =>{
-    const [pokemon , setPokemon] = useState({status:apiStatus.initial, data:[], errorMsg:null})
+    const [pokemon , setPokemon] = useState({status:apiStatus.initial, pokemonList:[], errorMsg:null})
     useEffect(() => {
         const fetchPokemon = async () =>{
-            setPokemon({status:apiStatus.inProgess, data:[], errorMsg:null})
-            const url = "https://pokeapi.co/api/v2/ability/?limit=150&offset=0"
+            setPokemon({status:apiStatus.inProgess, pokemonList:[], errorMsg:null})
+            const url = 'https://pokeapi.co/api/v2/pokemon?limit=150'
             const response = await fetch(url)
             const data = await response.json()
             if(response.ok){
-                setPokemon({status:apiStatus.success, data: data, errorMsg: null})
-                console.log(data)
+                setPokemon({status:apiStatus.success, pokemonList: data.results, errorMsg: null})
+                console.log(data.results)
             }
             else{
-                setPokemon({status:apiStatus.failure, data:data, errorMsg: response.statusText})
+                setPokemon({status:apiStatus.failure, pokemonList:[], errorMsg: response.statusText})
             }
         }
         fetchPokemon()
     },[])
+
+    const {status, pokemonList, errorMsg} = pokemon
     
 
     return(
         <div>
             <p>pokemon</p>
+            <ul>
+            {pokemonList.map((item) =>(
+                <PokemonItem key={item.name} details ={item}/>
+            ))}
+            </ul>
+            
+            
             
         </div>
     )
