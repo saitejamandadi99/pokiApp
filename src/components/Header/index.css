@@ -1,0 +1,86 @@
+/* Base styles (mobile-first) */
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 16px;
+    background-color: #ef5350;
+    color: white;
+    text-align: center;
+  }
+  
+  .app-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    text-decoration: none;
+  }
+  
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .nav-link:hover {
+    text-decoration: underline;
+  }
+  
+  .header-right {
+    margin-top: 8px;
+  }
+  
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+  
+  /* Medium screens (tablets and up) */
+  @media (min-width: 600px) {
+    .header {
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: left;
+    }
+  
+    .app-title {
+      margin-bottom: 0;
+      font-size: 24px;
+      text-decoration: none;
+    }
+  
+    .nav-links {
+      flex-direction: row;
+      margin-bottom: 0;
+    }
+  
+    .header-right {
+      margin-top: 0;
+    }
+  }
+  
+  /* Larger screens (laptops and desktops) */
+  @media (min-width: 1024px) {
+    .app-title {
+      font-size: 28px;
+      text-decoration: none;
+    }
+  
+    .nav-link {
+      font-size: 18px;
+    }
+  
+    .avatar {
+      width: 48px;
+      height: 48px;
+    }
+  }
+  
